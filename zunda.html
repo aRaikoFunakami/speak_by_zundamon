@@ -18,8 +18,13 @@
     var controller = null;
     controller = new AbortController();  // リクエスト中断用のAbortController
 
-    var textData = "ずんだずんだずんだもん!";
+
     playButton.addEventListener("click", function () {
+      var textData = "ずんだずんだずんだもん";
+      playAudioByVoiceVox(textData, controller.signal);
+      textData = "のみなくる";
+      playAudioByVoiceVox(textData, controller.signal);
+      textData = "パワーだもん!そうだもん、ちがうもん、やっぱりそうだもん";
       playAudioByVoiceVox(textData, controller.signal);
     });
 
