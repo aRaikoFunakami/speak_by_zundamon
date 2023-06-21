@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>WAV再生</title>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <button id="playButton">再生</button>
+  <button id="abort">中断</button>
+
+  <script type="module">
+    import { playAudioByVoiceVox } from "./playAudioByVoiceVox.js";
+
+    var playButton = document.getElementById("playButton");
+    var abort = document.getElementById("abort");  // 中断ボタン
+    var controller = null;
+    controller = new AbortController();  // リクエスト中断用のAbortController
+
+    var textData = "ずんだずんだずんだもん!";
+    playButton.addEventListener("click", function () {
+      playAudioByVoiceVox(textData, controller.signal);
+    });
+
+    // 中断ボタンクリック時
+    abort.addEventListener("click", async () => {
+      // abort関数でシグナルオブジェクトに中断を送信
+      controller.abort();
+      console.log('Request aborted!');
+      controller = new AbortController(); 
+    });
+  </script>
+</body>
+
+</html>
